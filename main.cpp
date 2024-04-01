@@ -3,12 +3,25 @@
 #include <cmath>
 using namespace std;
 
-int triangleFunc() { // для треугольника
+bool isTriangle(float a, float b, float c) {
 	
-	cout << "Enter sides: " << endl;
+	return (a + b > c) && (a + c > b) && (b + c > a);
+
+}
+
+int triangleFunc() { // for triangle
+	
 	float a, b, c;
-	cin >> a >> b >> c;
-	
+
+	do {
+		cout << "Enter sides: " << endl;
+		cin >> a >> b >> c;
+
+		if (!isTriangle(a, b, c)) {
+			cout << "Try again" << endl;
+		}
+	} while (!isTriangle(a, b, c));
+
 	float perimeter = a + b + c;
 	float semiPerimeter = perimeter / 2;
 	float area = sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
